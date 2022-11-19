@@ -9,7 +9,7 @@ routeModuleUI <- function(id, distinct_routes, day_types) {
 
   # Sidebar layout with input and output definitions
   sidebarLayout(
-    
+
     # Sidebar panel for inputs
     sidebarPanel(
       fluidRow(
@@ -46,13 +46,15 @@ routeModuleUI <- function(id, distinct_routes, day_types) {
         )
       ),
     ),
-    
+
     # Main panel for displaying outputs
     mainPanel(
-      
+
       # Output: On time percent plot
-      plotOutput(outputId = ns("onTimePercentPlot"))
-      
+      plotOutput(outputId = ns("onTimePercentPlot")),
+
+      # Output: On time percent by data source
+      plotOutput(outputId = ns("onTimePercentByDataSourcePlot"))
     )
   )
 }
@@ -93,6 +95,37 @@ routeModuleServer <- function(id, dataset) {
           scale_x_date(date_breaks = "6 month", date_labels = "%m/%y") +
           ylab("On Time Percent") +
           labs(color = "Day Type") +
+          theme(
+            plot.title = element_text(hjust = 0.5, size = 16),
+            axis.title = element_text(size = 14)
+          )
+      })
+
+      # Plot of the on-time percent by data source over time
+      output$onTimePercentByDataSourcePlot <- renderPlot({
+        ggplot(
+          data = filter(
+            dataset,
+            route_full_name == input$route & day_type %in% input$day_types
+          )) +
+          geom_point(mapping = aes(
+            x = month_start,
+            y = on_time_percent,
+            color = data_source)
+          ) +
+          geom_smooth(
+            mapping = aes(
+              x = month_start,
+              y = on_time_percent,
+              color = data_source),
+            method = "loess",
+            formula = "y ~ x"
+          ) +
+          ggtitle("On Time Percent By Data Source") +
+          xlab("Month") +
+          scale_x_date(date_breaks = "6 month", date_labels = "%m/%y") +
+          ylab("On Time Percent") +
+          labs(color = "Data Source") +
           theme(
             plot.title = element_text(hjust = 0.5, size = 16),
             axis.title = element_text(size = 14)
