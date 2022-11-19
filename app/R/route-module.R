@@ -1,3 +1,8 @@
+# This module is used to select and display data for individual routes
+# The routes are selected by name and day type
+# The latest month's on time percentage for each day type is displayed
+# A scatter plot of the on time percentage over time is displayed
+#   with different colors for each day type
 routeModuleUI <- function(id, distinct_routes, day_types) {
   # All uses of Shiny input/output IDs in the UI must be namespaced
   ns <- NS(id)

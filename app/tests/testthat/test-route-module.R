@@ -25,7 +25,7 @@ test_that("confirm the on time percent plot can be accessed without error", {
       session$setInputs(route = "2 - MOUNT ROYAL")
       session$setInputs(day_types = day_types)
       
-      output$onTimePercentPlot
+      expect_type(output$onTimePercentPlot, "list")
     }
   )
 })
