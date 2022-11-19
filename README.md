@@ -25,6 +25,23 @@ The purpose of this project is to demonstrate data analysis techniques using R
   - `docker run --rm -p 3838:3838 final-project-shiny-app`
 - Navigate to `localhost:3838` in a web browser to view the application
 
+## Running the tests
+
+- The Tidyverse will need to be installed if not already
+  - `install.packages("tidyverse")`
+
+### Running the tests with RStudio
+
+- Open one of the test files in `app/tests/testthat/` in RStudio
+- Click the "Run Tests" button
+
+### Running the tests in the R console
+
+- Set the working directory to the project root located on the file system
+  - `setwd("~/project")`
+- Run the test suite
+  - `shiny::runTests("app")`
+
 ## References
 
 #### Location of the Port Authority data
