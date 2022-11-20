@@ -1,3 +1,15 @@
+# function to return the list of distinct routes
+# used by the route-module for the route selector
+distinct_routes <- function(dataset) {
+  distinct(dataset['route_full_name'])[[1]]
+}
+
+# function used to return the distinct day types
+# used by the route-module for the day type options
+day_types <- function(dataset) {
+  distinct(dataset['day_type'])[[1]]
+}
+
 # function to return the latest on time percent
 # used by the route-module to find the last on time percent
 latest_on_time_percent <- function(dataset, route, route_day_type) {

@@ -1,5 +1,4 @@
 test_dataset <- read_csv('../test_data/dataset.csv')
-day_types <- distinct(test_dataset['day_type'])[[1]]
 
 test_that("the latest on time percents are returned", {
   testServer(
@@ -23,7 +22,7 @@ test_that("confirm the on time percent plot can be accessed without error", {
     {
       # Set the route and the day type
       session$setInputs(route = "2 - MOUNT ROYAL")
-      session$setInputs(day_types = day_types)
+      session$setInputs(day_types = day_types(test_dataset))
       
       expect_type(output$onTimePercentPlot, "list")
     }
@@ -37,7 +36,7 @@ test_that("on time percent by data source plot can be accessed without error", {
     {
       # Set the route and the day type
       session$setInputs(route = "4 - TROY HILL")
-      session$setInputs(day_types = day_types)
+      session$setInputs(day_types = day_types(test_dataset))
 
       expect_type(output$onTimePercentByDataSourcePlot, "list")
     }

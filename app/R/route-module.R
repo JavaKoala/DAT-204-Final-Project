@@ -3,7 +3,7 @@
 # The latest month's on time percentage for each day type is displayed
 # A scatter plot of the on time percentage over time is displayed
 #   with different colors for each day type
-routeModuleUI <- function(id, distinct_routes, day_types) {
+routeModuleUI <- function(id, dataset) {
   # All uses of Shiny input/output IDs in the UI must be namespaced
   ns <- NS(id)
 
@@ -17,7 +17,7 @@ routeModuleUI <- function(id, distinct_routes, day_types) {
                selectInput(
                  ns("route"),
                  h3("Select route"),
-                 choices = distinct_routes
+                 choices = distinct_routes(dataset)
                )
         )
       ),
@@ -25,8 +25,8 @@ routeModuleUI <- function(id, distinct_routes, day_types) {
         column(6,
                checkboxGroupInput(ns("day_types"),
                                   h3("Day Type"),
-                                  choices = day_types,
-                                  selected = day_types))
+                                  choices = day_types(dataset),
+                                  selected = day_types(dataset)))
       ),
       fluidRow(
         column(12,

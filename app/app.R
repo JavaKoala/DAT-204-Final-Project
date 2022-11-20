@@ -54,10 +54,6 @@ library(tidyverse)
 # Set working directory to project then
 dataset <- read_csv('dataset.csv')
 
-# Create distinct routes for options
-distinct_routes <- distinct(dataset['route_full_name'])[[1]]
-day_types <- distinct(dataset['day_type'])[[1]]
-
 # This is the start of the UI portion of the application
 ui <- fluidPage(
 
@@ -65,7 +61,7 @@ ui <- fluidPage(
   titlePanel("Final Project"),
 
   # UI portion of the route module
-  routeModuleUI("route-module", distinct_routes, day_types)
+  routeModuleUI("route-module", dataset)
 )
 
 # Define server logic 
