@@ -50,9 +50,27 @@ routeModuleUI <- function(id, dataset) {
     # Main panel for displaying outputs
     mainPanel(
 
+      h4("Graph 1: On time percent vs month"),
+      p("This is a graph of the selected route's on time percent by month."),
+      p("Use the Day Type checkboxes to change the day type."),
+
       # Output: On time percent plot
       plotOutput(outputId = ns("onTimePercentPlot")),
 
+      h4("Graph 2: On time percent vs data source"),
+      p("From the data description:"),
+      p("Starting in October 2018, Port Authority moved to a different OTP
+           recording system called Clever.
+         OTP data from the Clever system is more accurate because
+           it uses more timepoints; the previous system excluded a large portion
+           of data from OTP processing due to minor technical issues with rider
+           counts on certain trips."
+      ),
+      p("This graph displays the different measuring systems by color and adds
+           a smoothing function to the plot for each system.
+         The grey portion around the lines is the confidence interval."),
+      p("It is not clear from the data description what measuring system is used
+           when it is not defined (NA)."),
       # Output: On time percent by data source
       plotOutput(outputId = ns("onTimePercentByDataSourcePlot"))
     )

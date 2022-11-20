@@ -64,7 +64,23 @@ dataset <- read_csv('dataset.csv')
 ui <- fluidPage(
 
   # Application title
-  titlePanel("Final Project"),
+  titlePanel(
+    "DAT-204 Final Project -
+     Pittsburgh Port Authority On Time Percent Analysis"
+  ),
+
+  # Data set link
+  h4("Dataset link"),
+  a("https://catalog.data.gov/dataset/port-authority-monthly-on-time-performance-by-route",
+    href = "https://catalog.data.gov/dataset/port-authority-monthly-on-time-performance-by-route",
+    target = "_blank"),
+
+  # Part 1: Analysis by route
+  h3("Part 1: Analysis by Route"),
+  p("The first analysis is by route.
+     The route can be selected along with the day type, weekend, Saturday, or
+     Sunday."),
+  p("Some routes to not run on each day type."),
 
   # UI portion of the route module
   routeModuleUI("route-module", dataset)
