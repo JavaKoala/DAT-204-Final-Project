@@ -27,19 +27,25 @@
 #   Dataset link:
 #   https://catalog.data.gov/dataset/port-authority-monthly-on-time-performance-by-route
 #
+#   Testing references:
+#   https://shiny.rstudio.com/articles/testing-overview.html
+#   https://shiny.rstudio.com/articles/server-function-testing.html
+#   https://mastering-shiny.org/scaling-testing.html
+#
 #   Dockerizing shiny apps:
 #   https://hosting.analythium.io/dockerizing-shiny-applications/
 #   https://blog.sellorm.com/2021/04/25/shiny-app-in-docker/
 #   https://hosting.analythium.io/running-shiny-server-in-docker/
-#
-#   Time series plots
-#   https://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html
 #
 #   Build the application
 #   docker build -t final-project-shiny-app .
 #
 #   Run the application
 #   docker run --rm -p 3838:3838 final-project-shiny-app
+#
+#   Time series plots
+#   https://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html
+#
 ################################################################################
 
 # Set working directory
