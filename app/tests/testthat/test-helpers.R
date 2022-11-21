@@ -44,3 +44,28 @@ test_that("NA is returned for an invalid day type", {
     "NA"
   )
 })
+
+# Test that the route_module_data function returns the data set filtered by
+# route and day types
+test_that("the route_module_data filters data by route", {
+  filtered_data <- route_module_data(
+    test_dataset,
+    "6 - SPRING HILL",
+    day_types(test_dataset)
+  )
+  distinct_route <- distinct(filtered_data['route_full_name'])[[1]]
+
+  expect_equal(distinct_route, "6 - SPRING HILL")
+})
+
+test_that("the route_module_data filters data by day type", {
+  filtered_data <- route_module_data(
+    test_dataset,
+    "8 - PERRYSVILLE",
+    c("SAT.")
+  )
+  distinct_day_type <- distinct(filtered_data['day_type'])[[1]]
+
+  expect_equal(distinct_day_type, "SAT.")
+})
+

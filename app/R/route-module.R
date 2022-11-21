@@ -99,10 +99,7 @@ routeModuleServer <- function(id, dataset) {
       # Plot of the on-time percent over time
       output$onTimePercentPlot <- renderPlot({
         ggplot(
-          data = filter(
-            dataset,
-            route_full_name == input$route & day_type %in% input$day_types
-          )) +
+          data = route_module_data(dataset, input$route, input$day_types)) +
           geom_point(mapping = aes(
             x = month_start,
             y = on_time_percent,
@@ -122,10 +119,7 @@ routeModuleServer <- function(id, dataset) {
       # Plot of the on-time percent by data source over time
       output$onTimePercentByDataSourcePlot <- renderPlot({
         ggplot(
-          data = filter(
-            dataset,
-            route_full_name == input$route & day_type %in% input$day_types
-          )) +
+          data = route_module_data(dataset, input$route, input$day_types)) +
           geom_point(mapping = aes(
             x = month_start,
             y = on_time_percent,
