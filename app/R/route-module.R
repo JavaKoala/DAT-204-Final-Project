@@ -102,7 +102,7 @@ routeModuleServer <- function(id, dataset) {
           data = route_module_data(dataset, input$route, input$day_types)) +
           geom_point(mapping = aes(
             x = month_start,
-            y = on_time_percent,
+            y = on_time_percent_100,
             color = day_type)
           ) +
           ggtitle("On Time Percent Per Month") +
@@ -122,13 +122,13 @@ routeModuleServer <- function(id, dataset) {
           data = route_module_data(dataset, input$route, input$day_types)) +
           geom_point(mapping = aes(
             x = month_start,
-            y = on_time_percent,
+            y = on_time_percent_100,
             color = data_source)
           ) +
           geom_smooth(
             mapping = aes(
               x = month_start,
-              y = on_time_percent,
+              y = on_time_percent_100,
               color = data_source),
             method = "loess",
             formula = "y ~ x"

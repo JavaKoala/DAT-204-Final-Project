@@ -31,5 +31,6 @@ latest_on_time_percent <- function(dataset, route, route_day_type) {
 route_module_data <- function(dataset, route, day_types) {
   route_name <- route
   dataset %>%
-    filter(route_full_name == route_name & day_type %in% day_types)
+    filter(route_full_name == route_name & day_type %in% day_types) %>%
+    mutate(on_time_percent_100 = on_time_percent * 100)
 }

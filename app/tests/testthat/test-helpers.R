@@ -69,3 +69,14 @@ test_that("the route_module_data filters data by day type", {
   expect_equal(distinct_day_type, "SAT.")
 })
 
+test_that("the route_module_data has the precent multiplied by 100", {
+  filtered_data <- route_module_data(
+    test_dataset,
+    "11 - FINEVIEW",
+    day_types(test_dataset)
+  )
+  test_percent <- slice_head(filtered_data)['on_time_percent_100'][[1]]
+
+  expect_equal(test_percent, 74.38)
+})
+
