@@ -80,7 +80,7 @@ ui <- fluidPage(
   p("The first analysis is by route.
      The route can be selected along with the day type, weekend, Saturday, or
      Sunday."),
-  p("Some routes to not run on each day type."),
+  p("Some routes do not run on each day type."),
 
   # UI portion of the route module
   routeModuleUI("route-module", dataset)
