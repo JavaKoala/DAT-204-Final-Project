@@ -83,13 +83,23 @@ ui <- fluidPage(
   p("Some routes do not run on each day type."),
 
   # UI portion of the route module
-  routeModuleUI("route-module", dataset)
+  routeModuleUI("route-module", dataset),
+
+  # Part 2: Aggregate analysis
+  h3("Part 2: Aggregate analysis"),
+  p("The second analsys is aggregated across multiple routes"),
+
+  # UI portion of the aggregate module
+  aggregateModuleUI("aggregate-module"),
 )
 
 # Define server logic 
 server <- function(input, output) {
   # Server portion of the route module
   routeModuleServer("route-module", dataset)
+
+  # Server portion of the aggregate module
+  aggregateModuleServer("aggregate-module", dataset)
 }
 
 # run the server
