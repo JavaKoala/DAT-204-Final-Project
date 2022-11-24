@@ -34,11 +34,3 @@ route_module_data <- function(dataset, route, day_types) {
     filter(route_full_name == route_name & day_type %in% day_types) %>%
     mutate(on_time_percent_100 = on_time_percent * 100)
 }
-
-# function to return the mean on time percent by mode
-mean_on_time_by_mode <- function(dataset) {
-  dataset %>%
-    mutate(on_time_percent_100 = on_time_percent * 100) %>%
-    group_by(mode, month_start) %>%
-    summarize(mean_on_time_percent = mean(on_time_percent_100, na.rm = TRUE))
-}

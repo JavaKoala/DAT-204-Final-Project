@@ -1,3 +1,11 @@
+# function to return the mean on time percent by mode
+mean_on_time_by_mode <- function(dataset) {
+  dataset %>%
+    mutate(on_time_percent_100 = on_time_percent * 100) %>%
+    group_by(mode, month_start) %>%
+    summarize(mean_on_time_percent = mean(on_time_percent_100, na.rm = TRUE))
+}
+
 # This module is used to display aggregate data
 aggregateModuleUI <- function(id) {
   ns <- NS(id)
