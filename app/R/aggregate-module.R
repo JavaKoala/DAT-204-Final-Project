@@ -2,8 +2,15 @@
 aggregateModuleUI <- function(id) {
   ns <- NS(id)
 
-  h4("Graph 3: Mean Bus and Light Rail On Time Percent Over Time")
-  plotOutput(outputId = ns("meanOnTimePercentByMode"))
+  # Main panel for displaying outputs
+  mainPanel(
+    h4("Graph 3: Mean Bus and Light Rail On Time Percent Over Time"),
+    p("This graph is shows the difference between Bus and Light Rail on
+        time percentages."),
+    p("NA are observations where the mode is not defined."),
+    plotOutput(outputId = ns("meanOnTimePercentByMode")),
+    width = 12
+  )
 }
 
 aggregateModuleServer <- function(id, dataset) {
@@ -11,14 +18,19 @@ aggregateModuleServer <- function(id, dataset) {
     id,
     function(input, output, session) {
 
-      # Plot of the on-time percent over time
+      # Plot of the mean on-time percent over time vs mode
       output$meanOnTimePercentByMode <- renderPlot({
         ggplot(
-          data = mean_on_time_by_mode(dataset)) +
-          geom_point(mapping = aes(
-            x = month_start,
-            y = mean_on_time_percent,
-            color = mode)
+          data = mean_on_time_by_mode(dataset),
+          aes(month_start, mean_on_time_percent, color = mode)) +
+          geom_line(size = 1) +
+          ggtitle("Mean On Time Percent By Transportation Mode") +
+          scale_x_date(date_breaks = "6 month", date_labels = "%m/%y") +
+          xlab("Month") +
+          ylab("Mean On Time Percent") +
+          theme(
+            plot.title = element_text(hjust = 0.5, size = 16),
+            axis.title = element_text(size = 14)
           )
       })
     }

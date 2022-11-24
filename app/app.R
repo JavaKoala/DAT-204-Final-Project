@@ -87,7 +87,7 @@ ui <- fluidPage(
 
   # Part 2: Aggregate analysis
   h3("Part 2: Aggregate analysis"),
-  p("The second analsys is aggregated across multiple routes"),
+  p("The second analysis is aggregated across multiple routes"),
 
   # UI portion of the aggregate module
   aggregateModuleUI("aggregate-module"),
