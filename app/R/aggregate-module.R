@@ -46,7 +46,7 @@ aggregateModuleServer <- function(id, dataset) {
         ggplot(
           data = mean_on_time_by_mode(dataset),
           aes(month_start, mean_on_time_percent, color = mode)) +
-          geom_line(size = 1) +
+          geom_line(linewidth = 1) +
           ggtitle("Mean On Time Percent By Transportation Mode") +
           scale_x_date(date_breaks = "6 month", date_labels = "%m/%y") +
           xlab("Month") +
@@ -62,7 +62,7 @@ aggregateModuleServer <- function(id, dataset) {
         ggplot(
           data = mean_bus_on_time_percent_by_day_type(dataset),
           aes(month_start, mean_on_time_percent, color = day_type)) +
-          geom_line(size = 1) +
+          geom_line(linewidth = 1) +
           ggtitle("Mean Bus On Time Percent By Day Type") +
           scale_x_date(date_breaks = "6 month", date_labels = "%m/%y") +
           xlab("Month") +

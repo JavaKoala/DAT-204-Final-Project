@@ -41,3 +41,13 @@ test_that("on time percent by route plot can be accessed without error", {
     }
   )
 })
+
+test_that("the mean bus on time precent plot can be accessed without error", {
+  testServer(
+    aggregateModuleServer,
+    args = list(id = "aggregate-module", dataset = test_dataset),
+    {
+      expect_type(output$meanBusOnTimePercentByDayType, "list")
+    }
+  )
+})
