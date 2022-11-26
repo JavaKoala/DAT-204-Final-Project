@@ -53,6 +53,7 @@ aggregateModuleServer <- function(id, dataset) {
           geom_line(linewidth = 1) +
           ggtitle("Mean On Time Percent By Transportation Mode") +
           scale_x_date(date_breaks = "6 month", date_labels = "%m/%y") +
+          labs(color = "Mode") +
           xlab("Month") +
           ylab("Mean On Time Percent") +
           theme(
@@ -69,6 +70,7 @@ aggregateModuleServer <- function(id, dataset) {
           geom_line(linewidth = 1) +
           ggtitle("Mean Bus On Time Percent By Day Type") +
           scale_x_date(date_breaks = "6 month", date_labels = "%m/%y") +
+          labs(color = "Day Type") +
           xlab("Month") +
           ylab("Mean On Time Percent") +
           theme(
@@ -85,6 +87,7 @@ aggregateModuleServer <- function(id, dataset) {
           geom_line(linewidth = 1) +
           ggtitle("Mean Light Rail On Time Percent By Day Type") +
           scale_x_date(date_breaks = "6 month", date_labels = "%m/%y") +
+          labs(color = "Day Type") +
           xlab("Month") +
           ylab("Mean On Time Percent") +
           theme(
