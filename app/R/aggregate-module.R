@@ -32,7 +32,7 @@ aggregateModuleUI <- function(id) {
     p("The dip in SAT. and SUN. appear to correspond to the switch to Celver"),
     plotOutput(outputId = ns("meanBusOnTimePercentByDayType")),
 
-    h4("Graph 4: Mean Light Rail On Time Percent By Day Type"),
+    h4("Graph 5: Mean Light Rail On Time Percent By Day Type"),
     p("This graph is shows the differences in on time percentages by day type"),
     plotOutput(outputId = ns("meanLightRailOnTimePercentByDayType")),
 
