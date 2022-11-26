@@ -14,10 +14,10 @@ test_that("the data is aggregated by route and month start", {
   expect_equal(rounded_mean, c(66.25, 80.86))
 })
 
-# Test that the mean_bus_on_time_percent_by_day_type
+# Test that the mean_mode_on_time_percent_by_day_type
 # returns the mean Bus on time percent by day type
 test_that("the bus data is aggregated by day type and month start", {
-  aggregate_data <- mean_bus_on_time_percent_by_day_type(test_dataset)
+  aggregate_data <- mean_mode_on_time_percent_by_day_type(test_dataset, "Bus")
   single_month <- aggregate_data %>%
     filter(month_start == "2019-05-01")
   start_month <- as.Date("2019-05-01")
@@ -30,10 +30,11 @@ test_that("the bus data is aggregated by day type and month start", {
   expect_equal(rounded_mean, c(65.61, 70.13, 64.37))
 })
 
-# Test that the mean_light_rail_on_time_percent_by_day_type
+# Test that the mean_mode_on_time_percent_by_day_type
 # returns the mean Light Rail on time percent by day type
 test_that("the light rail data is aggregated by day type and month start", {
-  aggregate_data <- mean_light_rail_on_time_percent_by_day_type(test_dataset)
+  aggregate_data <- mean_mode_on_time_percent_by_day_type(
+    test_dataset, "Light Rail")
   single_month <- aggregate_data %>%
     filter(month_start == "2019-05-01")
   start_month <- as.Date("2019-05-01")

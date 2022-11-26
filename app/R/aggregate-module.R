@@ -6,19 +6,10 @@ mean_on_time_by_mode <- function(dataset) {
     summarize(mean_on_time_percent = mean(on_time_percent_100, na.rm = TRUE))
 }
 
-# function to return the mean bus on time percent by day type
-mean_bus_on_time_percent_by_day_type <- function(dataset) {
+# function to return the mean mode on time percent by day type
+mean_mode_on_time_percent_by_day_type <- function(dataset, trans_mode) {
   dataset %>%
-    filter(mode == "Bus") %>%
-    mutate(on_time_percent_100 = on_time_percent * 100) %>%
-    group_by(day_type, month_start) %>%
-    summarize(mean_on_time_percent = mean(on_time_percent_100, na.rm = TRUE))
-}
-
-# function to return the mean light rail on time percent by day type
-mean_light_rail_on_time_percent_by_day_type <- function(dataset) {
-  dataset %>%
-    filter(mode == "Light Rail") %>%
+    filter(mode == trans_mode) %>%
     mutate(on_time_percent_100 = on_time_percent * 100) %>%
     group_by(day_type, month_start) %>%
     summarize(mean_on_time_percent = mean(on_time_percent_100, na.rm = TRUE))
@@ -73,7 +64,7 @@ aggregateModuleServer <- function(id, dataset) {
       # Plot of Bus mean on-time percent over time vs mode
       output$meanBusOnTimePercentByDayType <- renderPlot({
         ggplot(
-          data = mean_bus_on_time_percent_by_day_type(dataset),
+          data = mean_mode_on_time_percent_by_day_type(dataset, "Bus"),
           aes(month_start, mean_on_time_percent, color = day_type)) +
           geom_line(linewidth = 1) +
           ggtitle("Mean Bus On Time Percent By Day Type") +
@@ -89,7 +80,7 @@ aggregateModuleServer <- function(id, dataset) {
       # Plot of Light Rail mean on-time percent over time vs mode
       output$meanLightRailOnTimePercentByDayType <- renderPlot({
         ggplot(
-          data = mean_light_rail_on_time_percent_by_day_type(dataset),
+          data = mean_mode_on_time_percent_by_day_type(dataset, "Light Rail"),
           aes(month_start, mean_on_time_percent, color = day_type)) +
           geom_line(linewidth = 1) +
           ggtitle("Mean Light Rail On Time Percent By Day Type") +
