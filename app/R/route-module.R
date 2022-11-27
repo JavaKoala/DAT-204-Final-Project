@@ -38,7 +38,10 @@ route_module_data <- function(dataset, route, day_types) {
   route_name <- route
   dataset %>%
     filter(route_full_name == route_name & day_type %in% day_types) %>%
-    mutate(on_time_percent_100 = on_time_percent * 100)
+    mutate(
+      on_time_percent_100 = on_time_percent * 100,
+      data_source = if_else(is.na(data_source), "NA", data_source)
+    )
 }
 
 routeModuleUI <- function(id, dataset) {

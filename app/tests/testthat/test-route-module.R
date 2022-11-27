@@ -122,3 +122,17 @@ test_that("on time percent by data source plot can be accessed without error", {
     }
   )
 })
+
+test_that("when all the data sources are NA verify the plot can be accessed", {
+  testServer(
+    routeModuleServer,
+    args = list(id = "route-module", dataset = test_dataset),
+    {
+      # Set the route and the day type
+      session$setInputs(route = "BLUE - SouthHills Village via Overbrook")
+      session$setInputs(day_types = day_types(test_dataset))
+
+      expect_type(output$onTimePercentByDataSourcePlot, "list")
+    }
+  )
+})
