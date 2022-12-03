@@ -34,10 +34,17 @@ latest_on_time_percent <- function(dataset, route, route_day_type) {
 }
 
 # function to return the data used for the route module graphs
-route_module_data <- function(dataset, route, day_types) {
+route_module_data <- function(dataset, route, day_types, include_zero) {
   route_name <- route
   dataset %>%
     filter(route_full_name == route_name & day_type %in% day_types) %>%
+    filter(
+      if (include_zero == 1) {
+        on_time_percent >= 0
+      } else {
+        on_time_percent > 0
+      }
+    ) %>%
     mutate(
       on_time_percent_100 = on_time_percent * 100,
       data_source = if_else(is.na(data_source), "NA", data_source)
@@ -140,7 +147,7 @@ routeModuleServer <- function(id, dataset) {
       # Plot of the on-time percent over time
       output$onTimePercentPlot <- renderPlot({
         ggplot(
-          data = route_module_data(dataset, input$route, input$day_types)) +
+          data = route_module_data(dataset, input$route, input$day_types, 1)) +
           geom_point(mapping = aes(
             x = month_start,
             y = on_time_percent_100,
@@ -160,7 +167,7 @@ routeModuleServer <- function(id, dataset) {
       # Plot of the on-time percent by data source over time
       output$onTimePercentByDataSourcePlot <- renderPlot({
         ggplot(
-          data = route_module_data(dataset, input$route, input$day_types)) +
+          data = route_module_data(dataset, input$route, input$day_types, 1)) +
           geom_point(mapping = aes(
             x = month_start,
             y = on_time_percent_100,
