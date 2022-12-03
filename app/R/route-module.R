@@ -70,11 +70,16 @@ routeModuleUI <- function(id, dataset) {
         )
       ),
       fluidRow(
-        column(6,
+        column(4,
                checkboxGroupInput(ns("day_types"),
-                                  h3("Day Type"),
+                                  h4("Day Type"),
                                   choices = day_types(dataset),
-                                  selected = day_types(dataset)))
+                                  selected = day_types(dataset))),
+        column(4,
+               radioButtons(ns("include_zero"),
+                            h4("0 Percent"),
+                            choices = list("Include" = 1, "Exclude" = 0),
+                                      selected = 1))
       ),
       fluidRow(
         column(12,
@@ -100,7 +105,8 @@ routeModuleUI <- function(id, dataset) {
 
       h4("Graph 1: On time percent vs month"),
       p("This is a graph of the selected route's on time percent by month."),
-      p("Use the Day Type checkboxes to change the day type."),
+      p("Use the Day Type checkboxes to change the day type. Use the 0 Percent
+           radio buttons to include or exclude months with 0 on time percent."),
 
       # Output: On time percent plot
       plotOutput(outputId = ns("onTimePercentPlot")),
@@ -147,7 +153,12 @@ routeModuleServer <- function(id, dataset) {
       # Plot of the on-time percent over time
       output$onTimePercentPlot <- renderPlot({
         ggplot(
-          data = route_module_data(dataset, input$route, input$day_types, 1)) +
+          data = route_module_data(
+            dataset,
+            input$route,
+            input$day_types,
+            input$include_zero
+          )) +
           geom_point(mapping = aes(
             x = month_start,
             y = on_time_percent_100,
@@ -167,7 +178,12 @@ routeModuleServer <- function(id, dataset) {
       # Plot of the on-time percent by data source over time
       output$onTimePercentByDataSourcePlot <- renderPlot({
         ggplot(
-          data = route_module_data(dataset, input$route, input$day_types, 1)) +
+          data = route_module_data(
+            dataset,
+            input$route,
+            input$day_types,
+            input$include_zero
+          )) +
           geom_point(mapping = aes(
             x = month_start,
             y = on_time_percent_100,

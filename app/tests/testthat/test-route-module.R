@@ -135,6 +135,7 @@ test_that("confirm the on time percent plot can be accessed without error", {
       # Set the route and the day type
       session$setInputs(route = "2 - MOUNT ROYAL")
       session$setInputs(day_types = day_types(test_dataset))
+      session$setInputs(include_zero = 1)
 
       expect_type(output$onTimePercentPlot, "list")
     }
@@ -149,6 +150,7 @@ test_that("on time percent by data source plot can be accessed without error", {
       # Set the route and the day type
       session$setInputs(route = "4 - TROY HILL")
       session$setInputs(day_types = day_types(test_dataset))
+      session$setInputs(include_zero = 0)
 
       expect_type(output$onTimePercentByDataSourcePlot, "list")
     }
@@ -163,6 +165,7 @@ test_that("when all the data sources are NA verify the plot can be accessed", {
       # Set the route and the day type
       session$setInputs(route = "BLUE - SouthHills Village via Overbrook")
       session$setInputs(day_types = day_types(test_dataset))
+      session$setInputs(include_zero = 1)
 
       expect_type(output$onTimePercentByDataSourcePlot, "list")
     }
