@@ -1,6 +1,7 @@
 # function to return the mean on time percent by mode
 mean_on_time_by_mode <- function(dataset) {
   dataset %>%
+    filter(mode != "NA") %>%
     mutate(on_time_percent_100 = on_time_percent * 100) %>%
     group_by(mode, month_start) %>%
     summarize(mean_on_time_percent = mean(on_time_percent_100, na.rm = TRUE))
@@ -34,7 +35,6 @@ aggregateModuleUI <- function(id) {
     h4("Graph 3: Mean Bus and Light Rail On Time Percent Over Time"),
     p("This graph is shows the difference between Bus and Light Rail on
         time percentages."),
-    p("NA are observations where the mode is not defined."),
     plotOutput(outputId = ns("meanOnTimePercentByMode")),
 
     h4("Graph 4: Mean Bus On Time Percent By Day Type"),
@@ -74,7 +74,9 @@ aggregateModuleServer <- function(id, dataset) {
           theme(
             plot.title = element_text(hjust = 0.5, size = 16),
             axis.title = element_text(size = 14)
-          )
+          ) +
+          scale_color_manual(values = c("Bus" = "#F8766D",
+                                        "Light Rail" = "#00BA38"))
       })
 
       # Plot of Bus mean on-time percent over time vs mode
