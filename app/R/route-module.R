@@ -172,7 +172,10 @@ routeModuleServer <- function(id, dataset) {
           theme(
             plot.title = element_text(hjust = 0.5, size = 16),
             axis.title = element_text(size = 14)
-          )
+          ) +
+          scale_color_manual(values = c("SAT." = "#F8766D",
+                                        "SUN." = "#00BA38",
+                                        "WEEKDAY" = "#619CFF"))
       })
 
       # Plot of the on-time percent by data source over time

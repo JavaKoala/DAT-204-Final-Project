@@ -46,6 +46,14 @@
 #   Time series plots
 #   https://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html
 #
+#   Scaling colors manually so they do not cycle when changing options
+#   https://ggplot2.tidyverse.org/reference/scale_manual.html
+#
+#   ggplot2 default colors
+#   https://stackoverflow.com/questions/8197559/emulate-ggplot2-default-color-palette
+#   library(scales)
+#   show_col(hue_pal()(3))
+#
 ################################################################################
 
 # Set working directory
