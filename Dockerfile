@@ -9,7 +9,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libxml2-dev \
     && rm -rf /var/lib/apt/lists/*
 RUN install2.r shiny tidyverse --error --skipinstalled
+RUN addgroup --system app \
+    && adduser --system --ingroup app app
 COPY ./app/ /srv/shiny-server/
+RUN chown app:app -R /srv/shiny-server/
+USER app
 EXPOSE 3838
 CMD ["R", "-e", "shiny::runApp('/srv/shiny-server')"]
 
