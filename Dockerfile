@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libssh2-1-dev \
     libxml2-dev \
     && rm -rf /var/lib/apt/lists/*
-RUN install2.r shiny tidyverse --error --skipinstalled
+RUN install2.r shiny tidyverse caTools --error --skipinstalled
 RUN addgroup --system app \
     && adduser --system --ingroup app app
 COPY ./app/ /srv/shiny-server/

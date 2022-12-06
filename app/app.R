@@ -54,6 +54,9 @@
 #   library(scales)
 #   show_col(hue_pal()(3))
 #
+#   Linear regression in R
+#   https://www.udemy.com/course/machinelearning/ chapters 5 - 13
+#
 ################################################################################
 
 # Set working directory
@@ -62,8 +65,10 @@
 # Install the tidyverse
 # install.packages("tidyverse")
 # install.packages("shiny")
+# install.packages("caTools")
 library(shiny)
 library(tidyverse)
+library(caTools)
 
 # Set working directory to project then
 dataset <- read_csv('dataset.csv')
@@ -99,6 +104,14 @@ ui <- fluidPage(
 
   # UI portion of the aggregate module
   aggregateModuleUI("aggregate-module"),
+
+  h3("Part 3: Regression analysis"),
+  p("The third analysis is a regression analysis using different methods. The
+       dataset is filtered by Bus routes and on time percent greater than 0.
+       The dataset is then split into a training set and test set."),
+  p("Use the date picker and the on-time percent will be predicted from
+       the model."),
+  regressionModuleUI("regression-module")
 )
 
 # Define server logic 
@@ -108,6 +121,9 @@ server <- function(input, output) {
 
   # Server portion of the aggregate module
   aggregateModuleServer("aggregate-module", dataset)
+
+  # Server portion of the regression module
+  regressionModuleServer("regression-module", dataset)
 }
 
 # run the server
