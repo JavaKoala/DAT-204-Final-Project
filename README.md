@@ -27,8 +27,9 @@ The purpose of this project is to demonstrate data analysis techniques using R
 
 ## Running the tests
 
-- The Tidyverse will need to be installed if not already
+- The Tidyverse and CA Tools will need to be installed if not already
   - `install.packages("tidyverse")`
+  - `install.packages("caTools")`
 
 ### Running the tests with RStudio
 
