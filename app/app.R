@@ -57,6 +57,8 @@
 #   Linear regression in R
 #   https://www.udemy.com/course/machinelearning/ chapters 5 - 13
 #
+#   Extract p value and r squared from linear model
+#   https://stackoverflow.com/questions/5587676/pull-out-p-values-and-r-squared-from-a-linear-regression
 ################################################################################
 
 # Set working directory

@@ -15,9 +15,11 @@ regressionModuleUI <- function(id) {
       fluidRow(
         column(12,
                h4("Linear prediction"),
-                 column(4,
+                 column(12,
                         h5("On Time Percent"),
-                        p(textOutput(ns("linear_prediction"))))
+                        p(textOutput(ns("linear_prediction"))),
+                        h5("R Squared"),
+                        p(textOutput(ns("linear_summary"))))
         )
       ),
     ),
@@ -56,6 +58,11 @@ regressionModuleServer <- function(id, dataset) {
       # assign the linear_prediction using the linear model
       output$linear_prediction <- renderText({
         predict(regressor, newdata = list(month_start = input$date))
+      })
+
+      # assign the linear_summary using the linear model
+      output$linear_summary <- renderText({
+        summary(regressor)$r.squared
       })
 
       # plot for the linear model training set
