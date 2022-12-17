@@ -27,6 +27,9 @@
 #   Dataset link:
 #   https://catalog.data.gov/dataset/port-authority-monthly-on-time-performance-by-route
 #
+#   Shiny web framework:
+#   https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/
+#
 #   Testing references:
 #   https://shiny.rstudio.com/articles/testing-overview.html
 #   https://shiny.rstudio.com/articles/server-function-testing.html
@@ -59,6 +62,11 @@
 #
 #   Extract p value and r squared from linear model
 #   https://stackoverflow.com/questions/5587676/pull-out-p-values-and-r-squared-from-a-linear-regression
+#
+#   1. Use different colors for graphs
+#   2. Offer subscription service for realtors
+#   3. Add explanation to for statistics
+#   4. Add easy explanation
 ################################################################################
 
 # Set working directory
