@@ -48,3 +48,29 @@ The purpose of this project is to demonstrate data analysis techniques using R
 #### Location of the Port Authority data
 
 https://catalog.data.gov/dataset/port-authority-monthly-on-time-performance-by-route
+
+## Tree
+
+```
+├── Dockerfile
+├── LICENSE
+├── README.md
+├── app
+│   ├── R
+│   │   ├── aggregate-module.R
+│   │   ├── regression-module.R
+│   │   └── route-module.R
+│   ├── app.R
+│   ├── dataset.csv
+│   └── tests
+│       ├── test_data
+│       │   └── dataset.csv
+│       ├── testthat
+│       │   ├── setup-shinytest2.R
+│       │   ├── test-aggregate-module.R
+│       │   ├── test-regression-module.R
+│       │   └── test-route-module.R
+│       └── testthat.R
+├── executive_summary.docx
+└── table_of_contents.txt
+```

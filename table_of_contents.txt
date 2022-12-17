@@ -1,0 +1,21 @@
+├── Dockerfile - File used to create the docker container
+├── LICENSE
+├── README.md
+├── app - Main application folder
+│   ├── R - Contains the R modules
+│   │   ├── aggregate-module.R - Part 2 aggregate module
+│   │   ├── regression-module.R - Part 3 regression module
+│   │   └── route-module.R - Part 1 route moudle
+│   ├── app.R - Application entry point, contains main shinyApp
+│   ├── dataset.csv - Dataset used by the application
+│   └── tests - Testing folder
+│       ├── test_data
+│       │   └── dataset.csv - Dataset used in testing
+│       ├── testthat - Folder containing testthat tests
+│       │   ├── setup-shinytest2.R - Test that initializers
+│       │   ├── test-aggregate-module.R - Test part 2 aggregate module
+│       │   ├── test-regression-module.R - Test part 3 regression module
+│       │   └── test-route-module.R - Test part 1 route module
+│       └── testthat.R - Testthat entry point
+├── executive_summary.docx
+└── table_of_contents.txt
